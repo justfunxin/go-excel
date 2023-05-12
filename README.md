@@ -7,8 +7,12 @@
 - read from upload multipart file `GetRowsFromMultipart`
 
 ## Usage
+1. import lib
+   ```go
+   go get -u github.com/kangarooxin/go-excel
+   ```
 
-1. mark struct column with tag `xlsx`, if not config tag, use field name default.
+2. mark struct column with tag `xlsx`, if not config tag, use field name default.
 
     ```go
     type User struct {
@@ -18,7 +22,7 @@
     }
     ```
 
-2. create excel with struct slice
+3. create excel with struct slice
 
     ```go
     func TestCreate(t *testing.T) {
@@ -45,7 +49,7 @@
     }
     ```
 
-3. read excel to struct slice
+4. read excel to struct slice
 
     ```go
     func TestRead(t *testing.T) {
