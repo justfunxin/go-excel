@@ -1,4 +1,5 @@
 # go-excel
+- depend on [excelize](https://github.com/qax-os/excelize)
 - read and write excel with struct
 
 ## Functions
