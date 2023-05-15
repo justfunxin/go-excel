@@ -12,6 +12,8 @@ type User struct {
 	Id       int       `xlsx:"账号ID"`
 	Name     string    `xlsx:"账号名"`
 	Birthday time.Time `xlsx:"生日"`
+	Interest []string  `xlsx:"兴趣"`
+	Numbers  []int     `xlsx:"数字"`
 }
 
 func TestCreate(t *testing.T) {
@@ -20,11 +22,15 @@ func TestCreate(t *testing.T) {
 			Id:       1,
 			Name:     "Test1",
 			Birthday: time.Now(),
+			Interest: []string{"篮球", "户外"},
+			Numbers:  []int{1, 2},
 		},
 		{
 			Id:       2,
 			Name:     "Test2",
 			Birthday: time.Now(),
+			Interest: []string{"篮球", "户外"},
+			Numbers:  []int{1, 2},
 		},
 	}
 	f, err := NewFile(users)

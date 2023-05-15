@@ -3,6 +3,7 @@ package convert
 import (
 	"fmt"
 	"reflect"
+	"strings"
 	"time"
 
 	"github.com/spf13/cast"
@@ -51,6 +52,12 @@ func CastMapToStruct[T any](data map[string]string, record *T, customConverters 
 					return err
 				}
 				field.SetBool(v)
+			case reflect.Slice:
+				s, err := castToSliceE(v, t.Elem().Kind())
+				if err != nil {
+					return err
+				}
+				field.Set(reflect.ValueOf(s))
 			case reflect.Struct:
 				converter := getConvert(t, customConverters)
 				if converter != nil {
@@ -68,6 +75,19 @@ func CastMapToStruct[T any](data map[string]string, record *T, customConverters 
 		}
 	}
 	return nil
+}
+
+func castToSliceE(v string, kind reflect.Kind) (interface{}, error) {
+	s := strings.Split(v, ",")
+	switch kind {
+	case reflect.String:
+		return cast.ToStringSliceE(s)
+	case reflect.Int:
+		return cast.ToIntSliceE(s)
+	case reflect.Bool:
+		return cast.ToBoolSliceE(s)
+	}
+	return v, fmt.Errorf("not support field type %s", kind)
 }
 
 func getConvert(t reflect.Type, customConverters []Converter) Converter {

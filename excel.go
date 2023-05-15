@@ -1,11 +1,13 @@
 package excel
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"mime/multipart"
 	"reflect"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/kangarooxin/go-excel/convert"
@@ -157,7 +159,7 @@ func NewFileWithSheetName[T any](sheetName string, records *[]T) (*excelize.File
 		val := reflect.ValueOf(record)
 		for j := 0; j < val.NumField(); j++ {
 			field := val.Field(j)
-			err = WriteCellValue(f, sheetName, j+1, row, field.Interface())
+			err = WriteCellValue(f, sheetName, j+1, row, getFieldValue(field))
 			if err != nil {
 				return nil, err
 			}
@@ -181,6 +183,20 @@ func GetCellName(col, row int) string {
 		return ""
 	}
 	return colName + strconv.Itoa(row)
+}
+
+func getFieldValue(field reflect.Value) interface{} {
+	value := field.Interface()
+	switch field.Kind() {
+	case reflect.Array, reflect.Slice:
+		var strArray []string
+		for i := 0; i < field.Len(); i++ {
+			strArray = append(strArray, fmt.Sprintf("%v", field.Index(i)))
+		}
+		return strings.Join(strArray, ",")
+	default:
+		return value
+	}
 }
 
 // convert 将一行数据转换成结构体
