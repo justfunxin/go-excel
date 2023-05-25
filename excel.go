@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/kangarooxin/go-excel/convert"
-	"github.com/kangarooxin/go-excel/util"
+	"github.com/kangarooxin/go-tools/convert"
+	"github.com/kangarooxin/go-tools/tags"
 	"github.com/spf13/cast"
 	"github.com/xuri/excelize/v2"
 )
@@ -120,7 +120,7 @@ func GetRowsBySheetName[T any](file *excelize.File, sheet string, records *[]T) 
 	if err != nil {
 		return err
 	}
-	tagMap := util.ParseTagFieldMap(new(T), "xlsx")
+	tagMap := tags.ParseTagFieldMap(new(T), "xlsx")
 	var header []string
 	for _, col := range rows[0] {
 		header = append(header, tagMap[col])
@@ -146,7 +146,7 @@ func NewFileWithSheetName[T any](sheetName string, records *[]T) (*excelize.File
 		return nil, err
 	}
 	// 写入标题
-	header := util.ParseTag(new(T), "xlsx")
+	header := tags.ParseToSlice(new(T), "xlsx")
 	for i, v := range header {
 		err = WriteCellValue(f, sheetName, i+1, 1, v)
 		if err != nil {
