@@ -7,6 +7,8 @@ github.com/kangarooxin/go-tools v0.0.0-20230525034829-e4a4982c48a2 h1:yitW6Tfbtu
 github.com/kangarooxin/go-tools v0.0.0-20230525034829-e4a4982c48a2/go.mod h1:Np5kbDmW3qexRC1njtwPYePcJINfnOe9iYNn6vIWXfg=
 github.com/kangarooxin/go-tools v0.1.0 h1:FdsVU6vGkFuFzTm/CA1trqD+3moYqd0liYc6NN0zyCE=
 github.com/kangarooxin/go-tools v0.1.0/go.mod h1:cp9NGB1IP9ot798BCKsTKZtysXI80Si9nZX/tHXm82c=
+github.com/kangarooxin/go-tools v0.1.1 h1:v3xYdTjPzk67LPmjgME9KaoSnISY43H3JtiTCAoOV8c=
+github.com/kangarooxin/go-tools v0.1.1/go.mod h1:cp9NGB1IP9ot798BCKsTKZtysXI80Si9nZX/tHXm82c=
 github.com/kr/pretty v0.3.0 h1:WgNl7dwNpEZ6jJ9k1snq4pZsg7DOEN8hP9Xw0Tsjwk0=
 github.com/kr/text v0.2.0 h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY=
 github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 h1:RWengNIwukTxcDr9M+97sNutRR1RKhG96O6jWumTTnw=
