@@ -21,6 +21,9 @@ var defaultConverts = []Converter{
 func CastMapToStruct[T any](data map[string]string, record *T, customConverters ...Converter) error {
 	val := reflect.ValueOf(record).Elem()
 	for k, v := range data {
+		if v == "" {
+			continue
+		}
 		field := val.FieldByName(k)
 		if field.IsValid() {
 			t := field.Type()
